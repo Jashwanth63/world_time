@@ -10,10 +10,17 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
+  Map LocationInfo = {
+    'location':"Kolkata",
+    'flag' : "India.jpg",
+   'url' : "Asia/Kolkata"
+  };
+
 
   String? time = "Loading";
-  void setUpWorldTime() async {
-    WorldTime instance = WorldTime(location: "Kolkata", flag: "india.jpg", url: 'Asia/Kolkata');
+  void setUpWorldTime({location, flag, url}) async {
+
+    WorldTime instance = WorldTime(location: location, flag: flag, url: url);
     await instance.timeData();
     //print(instance.time);
 
@@ -32,12 +39,17 @@ class _LoadingState extends State<Loading> {
   @override
   void initState() {
     super.initState();
-    setUpWorldTime();
+
+    setUpWorldTime(
+        location: LocationInfo['location'],
+    flag: LocationInfo['flag'],
+    url: LocationInfo['url']);
   }
 
   @override
   Widget build(BuildContext context) {
-
+    //LocationInfo = ModalRoute.of(context)!.settings.arguments as Map;
+    //initState();
     return const Scaffold(
       body: Center(
         child: SpinKitPulse(

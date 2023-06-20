@@ -12,7 +12,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     timeInfo = ModalRoute.of(context)!.settings.arguments as Map;
-    String imageBG = timeInfo['isDay'] ? 'day.jpg' : 'night.jpg';
+    String imageBG = timeInfo['isDay'] ? 'day.png' : 'night.png';
     //print(timeInfo['isDay']);
     return Scaffold(
       body: Container(
@@ -32,12 +32,12 @@ class _HomeState extends State<Home> {
                   },
                       icon: const Icon(
                         Icons.edit_location,
-                        color: Colors.teal,
+                        color: Colors.grey,
                       ),
                       label: const Text(
                           'Change Location',
                           style: TextStyle(
-                            color: Colors.teal,
+                            color: Colors.grey,
                           ),
                       ),
 
@@ -48,14 +48,23 @@ class _HomeState extends State<Home> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center ,
                     children: <Widget>[
-                      Text(timeInfo['location'],
-                        style: const TextStyle(
-                          fontSize: 40.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.deepOrange,
-                          letterSpacing: 3.0,
+                      CircleAvatar(
+                        backgroundImage: AssetImage(
+                          'assets/${timeInfo['flag']}'
                         ),
-                        //textAlign: TextAlign.center,
+                        radius: 20.0,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.0),
+                        child: Text(timeInfo['location'],
+                          style: const TextStyle(
+                            fontSize: 40.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.deepOrange,
+                            letterSpacing: 3.0,
+                          ),
+                          //textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
